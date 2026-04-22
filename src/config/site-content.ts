@@ -18,6 +18,7 @@ export const siteConfig = {
     facebook: "https://facebook.com/amanshield",
     instagram: "https://instagram.com/amanshield",
   },
+  keywords: ["طفايات حريق", "صيانة طفايات الحريق", "مكافحة الحريق", "الدفاع المدني", "أنظمة إنذار مبكر", "السعودية", "الرياض"],
 };
 
 export const navLinks = [
