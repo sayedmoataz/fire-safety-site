@@ -5,6 +5,7 @@ import { siteConfig, defaultMetadata } from "@/config/site-content";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import { Analytics } from "@vercel/analytics/next";
 
 // Configure Arabic Font
 const cairo = Cairo({ 
@@ -58,6 +59,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
