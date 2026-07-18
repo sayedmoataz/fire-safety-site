@@ -95,7 +95,7 @@ export default function Navbar() {
                   href={`tel:${siteConfig.phone}`}
                   className="block text-center w-full px-5 py-3 font-bold text-white bg-[#D32F2F] rounded-full shadow-sm hover:bg-red-700 transition-colors"
                 >
-                  اتصل التان
+                  اتصل الآن
                 </a>
               </div>
             </div>

@@ -85,24 +85,41 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featureProducts.map((product) => (
-              <div key={product.id} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 overflow-hidden flex flex-col group">
-                <div className="w-full h-64 bg-gray-200 relative overflow-hidden flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-500">
-                  {/* Pseudo Image Placeholder */}
-                  <span className="font-semibold text-gray-500">{product.name} (Image)</span>
+            {featureProducts.map((product) => {
+              const categoryLabels = {
+                All: "الكل",
+                Extinguishers: "طفايات حريق",
+                Cabinets: "صناديق ومحابس",
+                Gear: "أدوات ومستلزمات سلامة",
+              } as const;
+
+              return (
+                <div key={product.id} className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 overflow-hidden flex flex-col group">
+                  <div className="w-full h-64 bg-gray-100 relative overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    {product.image ? (
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="font-semibold text-gray-400">{product.name}</span>
+                    )}
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <span className="text-xs font-bold bg-red-100 text-[#D32F2F] px-3 py-1 rounded-full w-max mb-3">
+                      {categoryLabels[product.category as keyof typeof categoryLabels] || product.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{product.description}</p>
+                    <Link href={`/contact?product=${product.id}`} className="mt-auto w-full text-center py-2.5 bg-gray-900 text-white rounded-lg hover:bg-[#D32F2F] transition-colors font-bold">
+                      طلب تسعير
+                    </Link>
+                  </div>
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <span className="text-xs font-bold bg-red-100 text-[#D32F2F] px-3 py-1 rounded-full w-max mb-3">
-                    {product.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{product.description}</p>
-                  <Link href={`/contact?product=${product.id}`} className="mt-auto w-full text-center py-2.5 bg-gray-900 text-white rounded-lg hover:bg-[#D32F2F] transition-colors font-bold">
-                    طلب تسعير
-                  </Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           
           <div className="mt-8 md:hidden text-center">

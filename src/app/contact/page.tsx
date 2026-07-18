@@ -51,7 +51,7 @@ function ContactFormContent() {
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#D32F2F] focus:ring-1 focus:ring-[#D32F2F] outline-none transition-shadow bg-gray-50 focus:bg-white text-left"
-          placeholder="+966 5X XXX XXXX"
+          placeholder="01X XXXX XXXX"
         />
       </div>
 
@@ -133,17 +133,19 @@ export default function ContactPage() {
                   </div>
                 </li>
 
-                <li className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-red-50 text-[#D32F2F] rounded-full flex items-center justify-center shrink-0">
-                    <Mail className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">البريد الإلكتروني</h3>
-                    <a href={`mailto:${siteConfig.email}`} className="text-gray-600 hover:text-[#D32F2F] transition-colors">
-                      {siteConfig.email}
-                    </a>
-                  </div>
-                </li>
+                {siteConfig.email && (
+                  <li className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-red-50 text-[#D32F2F] rounded-full flex items-center justify-center shrink-0">
+                      <Mail className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 mb-1">البريد الإلكتروني</h3>
+                      <a href={`mailto:${siteConfig.email}`} className="text-gray-600 hover:text-[#D32F2F] transition-colors">
+                        {siteConfig.email}
+                      </a>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
 

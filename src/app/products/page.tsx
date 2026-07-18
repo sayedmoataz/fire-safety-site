@@ -11,9 +11,9 @@ export default function ProductsPage() {
   
   const tabs: { label: string; value: ProductCategory }[] = [
     { label: "الكل", value: "All" },
-    { label: "ثاني أكسيد الكربون", value: "CO2" },
-    { label: "بودرة جافة", value: "Powder" },
-    { label: "رغوة", value: "Foam" },
+    { label: "طفايات حريق", value: "Extinguishers" },
+    { label: "صناديق ومحابس", value: "Cabinets" },
+    { label: "أدوات ومستلزمات سلامة", value: "Gear" },
   ];
 
   const filteredProducts = activeTab === "All" 
@@ -68,13 +68,30 @@ export default function ProductsPage() {
                 key={product.id}
                 className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 flex flex-col overflow-hidden"
               >
-                {/* Image Placeholder */}
-                <div className="h-64 bg-gray-100 relative w-full flex items-center justify-center p-6">
-                  <div className="w-full h-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50 text-gray-400">
-                    <span className="text-lg font-bold">{product.name} (Image)</span>
-                  </div>
+                {/* Image */}
+                <div className="h-64 bg-gray-50 relative w-full overflow-hidden flex items-center justify-center">
+                  {product.image ? (
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50 text-gray-400">
+                      <span className="text-lg font-bold">{product.name}</span>
+                    </div>
+                  )}
                   <span className="absolute top-4 right-4 bg-white/90 backdrop-blur text-[#D32F2F] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                    {product.category}
+                    {(() => {
+                      const categoryLabels = {
+                        All: "الكل",
+                        Extinguishers: "طفايات حريق",
+                        Cabinets: "صناديق ومحابس",
+                        Gear: "أدوات ومستلزمات سلامة",
+                      } as const;
+                      return categoryLabels[product.category as keyof typeof categoryLabels] || product.category;
+                    })()}
                   </span>
                 </div>
                 

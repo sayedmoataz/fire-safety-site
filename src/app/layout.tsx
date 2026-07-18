@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "ar_SA",
+    locale: "ar_EG",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -81,7 +81,7 @@ export default function RootLayout({
       "@type": "PostalAddress",
       streetAddress: siteConfig.address,
       addressLocality: siteConfig.city,
-      addressCountry: "SA",
+      addressCountry: "EG",
     },
     geo: {
       "@type": "GeoCoordinates",
