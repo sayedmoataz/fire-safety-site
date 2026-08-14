@@ -12,7 +12,9 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative w-full bg-gradient-to-br from-gray-900 to-gray-800 text-white py-24 md:py-32">
+      <section className="relative w-full text-white py-24 md:py-32 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/cover1.jpeg')" }}>
+        {/* Dark overlay to ensure contrast and readability of white text */}
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-start gap-6 max-w-4xl pt-10">
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
             {heroContent.title}
@@ -36,7 +38,7 @@ export default function Home() {
           </div>
         </div>
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+        <div className="absolute top-0 right-0 w-full h-full overflow-hidden opacity-15 pointer-events-none z-0">
           <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-[#D32F2F] blur-[120px]"></div>
         </div>
       </section>

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { productsList, ProductCategory } from "@/config/site-content";
-import { motion, AnimatePresence } from "framer-motion";
 import { FileText, CheckCircle2 } from "lucide-react";
 
 export default function ProductsPage() {
@@ -53,83 +52,73 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence>
-            {filteredProducts.map((product) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                key={product.id}
-                className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-gray-100 flex flex-col overflow-hidden"
-              >
-                {/* Image */}
-                <div className="h-64 bg-gray-50 relative w-full overflow-hidden flex items-center justify-center">
-                  {product.image ? (
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="w-full h-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50 text-gray-400">
-                      <span className="text-lg font-bold">{product.name}</span>
-                    </div>
-                  )}
-                  <span className="absolute top-4 right-4 bg-white/90 backdrop-blur text-[#D32F2F] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                    {(() => {
-                      const categoryLabels = {
-                        All: "الكل",
-                        Extinguishers: "طفايات حريق",
-                        Cabinets: "صناديق ومحابس",
-                        Gear: "أدوات ومستلزمات سلامة",
-                      } as const;
-                      return categoryLabels[product.category as keyof typeof categoryLabels] || product.category;
-                    })()}
-                  </span>
-                </div>
-                
-                {/* Product Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
-                  <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
-                    {product.description}
-                  </p>
-                  
-                  {/* Specs List */}
-                  <div className="space-y-2 mb-6 bg-gray-50 p-4 rounded-xl">
-                    <h4 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-3">
-                      <FileText className="w-4 h-4 text-[#D32F2F]" />
-                      المواصفات الفنية:
-                    </h4>
-                    <ul className="space-y-2">
-                      {product.specs.map((spec, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden transform hover:-translate-y-1"
+            >
+              {/* Image */}
+              <div className="h-64 bg-gray-50 relative w-full overflow-hidden flex items-center justify-center">
+                {product.image ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center bg-gray-50 text-gray-400">
+                    <span className="text-lg font-bold">{product.name}</span>
                   </div>
-
-                  {/* Action */}
-                  <Link 
-                    href={`/contact?product=${product.id}`}
-                    className="w-full text-center py-3 bg-[#D32F2F] text-white font-bold rounded-xl shadow-md hover:bg-red-700 transition-colors"
-                  >
-                    اطلب الآن
-                  </Link>
+                )}
+                <span className="absolute top-4 right-4 bg-white/90 backdrop-blur text-[#D32F2F] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  {(() => {
+                    const categoryLabels = {
+                      All: "الكل",
+                      Extinguishers: "طفايات حريق",
+                      Cabinets: "صناديق ومحابس",
+                      Gear: "أدوات ومستلزمات سلامة",
+                    } as const;
+                    return categoryLabels[product.category as keyof typeof categoryLabels] || product.category;
+                  })()}
+                </span>
+              </div>
+              
+              {/* Product Content */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed flex-grow">
+                  {product.description}
+                </p>
+                
+                {/* Specs List */}
+                <div className="space-y-2 mb-6 bg-gray-50 p-4 rounded-xl">
+                  <h4 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-3">
+                    <FileText className="w-4 h-4 text-[#D32F2F]" />
+                    المواصفات الفنية:
+                  </h4>
+                  <ul className="space-y-2">
+                    {product.specs.map((spec, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                        <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                        <span>{spec}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+
+                {/* Action */}
+                <Link 
+                  href={`/contact?product=${product.id}`}
+                  className="w-full text-center py-3 bg-[#D32F2F] text-white font-bold rounded-xl shadow-md hover:bg-red-700 transition-colors"
+                >
+                  اطلب الآن
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-20">

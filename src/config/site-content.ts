@@ -9,9 +9,10 @@ export const siteConfig = {
   city: "القاهرة",
   country: "جمهورية مصر العربية",
   coordinates: {
-    lat: 29.8398,
-    lng: 31.3323,
+    lat: 29.8369105,
+    lng: 31.3461708,
   },
+  mapUrl: "https://www.google.com/maps/place/El+Tawfik+For+Industrial+Safty/@29.8369105,31.3461708,17z/data=!4m6!3m5!1s0x1458340265da1497:0x709e535643ff5072!8m2!3d29.8369105!4d31.3461708!16s%2Fg%2F1hc223y58",
   url: "https://www.eltawfeeq-safety.com",
   social: {
     twitter: "",
@@ -61,7 +62,7 @@ export const productsList = [
     category: "Extinguishers" as ProductCategory,
     description: "الطفاية الأكثر كفاءة وتعدداً في الاستخدام لحرائق المواد الصلبة، السوائل، والكهرباء. مطابقة للمواصفات المصرية ومعتمدة من الدفاع المدني.",
     specs: ["السعة: 6 كجم", "مادة الإطفاء: بودرة كيميائية جافة (ABC)", "تأتي مع حامل جداري ومؤشر ضغط للتحقق الدائم", "تصنيف الفئة: Class A, B, C"],
-    image: "/images/extinguishers-group.png",
+    image: "/images/post-9.jpeg",
   },
   {
     id: "ext-co2-multi",
